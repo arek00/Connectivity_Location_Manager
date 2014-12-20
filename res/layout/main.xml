@@ -9,11 +9,11 @@
             android:layout_height="226dp"
             android:text="@string/gps_icon"
             android:id="@+id/gpsButton" android:layout_gravity="center_vertical" android:background="@drawable/gps_icon"
-            />
+            android:onClick="openLocationActivity"/>
     <Button
             android:layout_width="match_parent"
             android:layout_height="233dp"
             android:text="@string/internet_icon"
             android:id="@+id/internetButton" android:layout_gravity="center_vertical"
-            android:background="@drawable/internet_icon"/>
+            android:background="@drawable/internet_icon" android:onClick="openConnectionActivity"/>
 </LinearLayout>

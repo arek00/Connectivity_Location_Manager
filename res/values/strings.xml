@@ -3,7 +3,20 @@
     <string name="app_name"><![CDATA[Connectivity&LocationManager]]></string>
 
     <string name="gps_icon">Uruchom usługę gps</string>
-
     <string name="internet_icon">Nawiąż połączenie z internetem</string>
+
+    <string name="location_manager">Stan lokalizacji GPS</string>
+    <string name="connection_manager">Typy połączenia z siecią internet</string>
+
+    <string name="choose_criteria">Wybierz poziom dokładności</string>
+    <string name="criteria_coarse">Przybliżony</string>
+    <string name="criteria_low">Niski</string>
+    <string name="criteria_medium">Średni</string>
+    <string name="criteria_high">Wysoki</string>
+    <string name="criteria_fine">Dokładny</string>
+
+    <string name="longitude">Długość geograficzna</string>
+    <string name="latitude">Szerokość geograficzna</string>
+    <string name="location_not_available">Lokalizacja niedostępna</string>
 
 </resources>

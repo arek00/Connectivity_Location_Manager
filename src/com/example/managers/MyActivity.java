@@ -3,6 +3,7 @@ package com.example.managers;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MyActivity extends Activity {
     /**
@@ -14,16 +15,18 @@ public class MyActivity extends Activity {
         setContentView(R.layout.main);
     }
 
-    public void openLocationActivity()
+    public void openLocationActivity(View view)
     {
         Intent locationActivity = new Intent(this,LocationManagement.class);
         startActivity(locationActivity);
+        finish();
     }
 
-    public void openConnectionActivity()
+    public void openConnectionActivity(View view)
     {
         Intent connectionActivity = new Intent(this,ConnectionManagement.class);
         startActivity(connectionActivity);
+        finish();
     }
 
 }
