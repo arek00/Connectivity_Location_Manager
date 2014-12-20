@@ -17,22 +17,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wifi_connection"
-                android:id="@+id/wifiRadio" android:checked="true"/>
+                android:id="@+id/wifiRadio" android:checked="true" android:onClick="setWifi"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ethernet_connection"
-                android:id="@+id/ethernetRadio"/>
+                android:id="@+id/ethernetRadio" android:onClick="setEthernet"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wimax_connection"
-                android:id="@+id/wimaxRadio"/>
+                android:id="@+id/wimaxRadio" android:onClick="setWimax"/>
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mms_connection"
-                android:id="@+id/mmsRadio"/>
+                android:id="@+id/mmsRadio" android:onClick="setMMS"/>
     </RadioGroup>
     <LinearLayout
             android:orientation="vertical"
@@ -50,6 +50,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/connect_button"
-            android:id="@+id/button"
-            android:layout_marginTop="10dp"/>
+            android:id="@+id/connect_button"
+            android:layout_marginTop="10dp" android:onClick="connect"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_connection_status"
+            android:id="@+id/connectionStatus" android:layout_marginTop="25dp"/>
 </LinearLayout>

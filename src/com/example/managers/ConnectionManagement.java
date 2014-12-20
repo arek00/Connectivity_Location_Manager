@@ -56,9 +56,36 @@ public class ConnectionManagement extends Activity {
     {
         EditText addressField = (EditText)findViewById(R.id.urlAddressField);
         String urlAddress = addressField.getText().toString();
+        setInProgressStatus();
+        
         this.connection = new Connection(urlAddress);
+        setConnectionStatus();
     }
 
+
+    public void setConnectionStatus()
+    {
+        TextView textView = (TextView)findViewById(R.id.connectionStatus);
+        String text;
+
+        if(connection.getConnectionStatus().equals("Completed"))
+        {
+            text = connection.getDownloadReadableInformations();
+        }
+        else
+        {
+            text = connection.getConnectionStatus();
+        }
+
+        textView.setText(text);
+    }
+
+    public void setInProgressStatus()
+    {
+        TextView textView = (TextView)findViewById(R.id.connectionStatus);
+        String text = "Pobieranie w toku";
+        textView.setText(text);
+    }
 
 
 }

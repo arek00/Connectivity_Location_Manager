@@ -18,10 +18,11 @@ public class Connection extends AsyncTask {
     private long startDownloadTime;
     private long finishDownloadTime;
     private int size;
+    private String status;
 
     public Connection(String address)
     {
-        doInBackground(address);
+        status = doInBackground(address);
     }
 
 
@@ -52,7 +53,7 @@ public class Connection extends AsyncTask {
             return "IOException";
         }
 
-        return "Complished";
+        return "Completed";
     }
 
     public static int calculateSize(InputStream inputStream) throws IOException {
@@ -111,4 +112,8 @@ public class Connection extends AsyncTask {
         return info;
     }
 
+    public String getConnectionStatus()
+    {
+        return this.status;
+    }
 }
