@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+            android:layout_width="192dp"
+            android:layout_height="226dp"
+            android:text="@string/gps_icon"
+            android:id="@+id/gpsButton" android:layout_gravity="center_vertical" android:background="@drawable/gps_icon"
+            />
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="233dp"
+            android:text="@string/internet_icon"
+            android:id="@+id/internetButton" android:layout_gravity="center_vertical"
+            android:background="@drawable/internet_icon"/>
+</LinearLayout>

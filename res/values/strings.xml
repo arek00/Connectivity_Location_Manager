@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"><![CDATA[Connectivity&LocationManager]]></string>
+
+    <string name="gps_icon">Uruchom usługę gps</string>
+
+    <string name="internet_icon">Nawiąż połączenie z internetem</string>
+
+</resources>
