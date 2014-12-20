@@ -19,4 +19,13 @@
     <string name="latitude">Szerokość geograficzna</string>
     <string name="location_not_available">Lokalizacja niedostępna</string>
 
+    <string name="choose_connection_type">Wybierz rodzaj połączenia</string>
+    <string name="wifi_connection">Wi-Fi</string>
+    <string name="ethernet_connection">Ethernet</string>
+    <string name="wimax_connection">WiMax</string>
+    <string name="mms_connection">MMS</string>
+
+    <string name="hint_address">Wpisz adres WWW</string>
+    <string name="connect_button">Połącz</string>
+
 </resources>

@@ -1,6 +1,8 @@
 package com.example.managers;
 
 import android.app.Activity;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 /**
@@ -8,11 +10,17 @@ import android.os.Bundle;
  */
 public class ConnectionManagement extends Activity {
 
+    ConnectivityManager connectivityManager;
+    NetworkInfo networkInfo;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connection);
     }
+
+
 
 
 

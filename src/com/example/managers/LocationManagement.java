@@ -45,7 +45,7 @@ public class LocationManagement extends Activity implements LocationListener{
             toast.show();
         }
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,100,10,this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
 
         this.criteria = new Criteria();
         this.criteria.setAccuracy(Criteria.ACCURACY_COARSE);
