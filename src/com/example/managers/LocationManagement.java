@@ -66,7 +66,6 @@ public class LocationManagement extends Activity implements LocationListener{
     {
         this.criteria.setAccuracy(Criteria.ACCURACY_COARSE);
     }
-
     public void setLow(View view)
     {
         this.criteria.setAccuracy(Criteria.ACCURACY_LOW);

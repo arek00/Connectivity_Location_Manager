@@ -1,14 +1,17 @@
 package com.example.managers;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.w3c.dom.Text;
 
 /**
@@ -18,74 +21,94 @@ public class ConnectionManagement extends Activity {
 
     private ConnectivityManager connectivityManager;
     private NetworkInfo networkInfo;
+    private NetworkInfo currentNetworkInfo;
     private Connection connection;
+
+    private String LOG_TAG = "ConnectivityManager info: ";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connection);
 
-        connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        Log.i(LOG_TAG, "Starting program");
 
+        connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        currentNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        setActiveNetworkInfo(currentNetworkInfo);
+
+        setConnectivityType(networkInfo);
+
     }
 
 
+    public void setActiveNetworkInfo(NetworkInfo info) {
+        String networkName = info.getTypeName();
+        String networkState = info.getState().toString();
 
-    public void setWifi(View view)
-    {
-        networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        TextView networkNameView = (TextView) findViewById(R.id.current_connection_name);
+        TextView networkStateView = (TextView) findViewById(R.id.current_connection_state);
+
+        networkNameView.setText(networkName);
+        networkStateView.setText(networkState);
+
     }
 
-    public void setEthernet(View view)
-    {
+    public void setWifi(View view) {
+        networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        setConnectivityType(networkInfo);
+    }
+
+    public void setEthernet(View view) {
         networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET);
+        setConnectivityType(networkInfo);
     }
 
-    public void setWimax(View view)
-    {
+    public void setWimax(View view) {
         networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
+        setConnectivityType(networkInfo);
     }
 
-    public void setMMS(View view)
-    {
+    public void setMMS(View view) {
         networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE_MMS);
+        setConnectivityType(networkInfo);
+
     }
 
-    public void connect(View view)
-    {
-        EditText addressField = (EditText)findViewById(R.id.urlAddressField);
-        String urlAddress = addressField.getText().toString();
-        setInProgressStatus();
-        
-        this.connection = new Connection(urlAddress);
-        setConnectionStatus();
+    public void setMobile(View view) {
+        networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        setConnectivityType(networkInfo);
+
     }
 
+    private void setConnectivityType(NetworkInfo networkInfo) {
+        String networkTypeName;
+        String networkState;
+        String connected = " Disconnected";
 
-    public void setConnectionStatus()
-    {
-        TextView textView = (TextView)findViewById(R.id.connectionStatus);
-        String text;
 
-        if(connection.getConnectionStatus().equals("Completed"))
-        {
-            text = connection.getDownloadReadableInformations();
+        if (networkInfo != null) {
+            networkTypeName = networkInfo.getTypeName();
+            networkState = networkInfo.getState().toString();
+            connected = Boolean.toString(networkInfo.isConnected());
+
+        } else {
+            networkTypeName = "Can't be obtain";
+            networkState = "Unknown";
         }
-        else
-        {
-            text = connection.getConnectionStatus();
-        }
 
-        textView.setText(text);
+
+        TextView connectivityTypeText = (TextView) findViewById(R.id.connection_type_name);
+        connectivityTypeText.setText(networkTypeName);
+
+        TextView connectivityStateText = (TextView) findViewById(R.id.connection_state_description);
+        connectivityStateText.setText(networkState);
+
+
+        Toast toast = Toast.makeText(getApplicationContext(), networkTypeName + " " + networkState + " " + connected, Toast.LENGTH_SHORT);
+        toast.show();
     }
-
-    public void setInProgressStatus()
-    {
-        TextView textView = (TextView)findViewById(R.id.connectionStatus);
-        String text = "Pobieranie w toku";
-        textView.setText(text);
-    }
-
 
 }

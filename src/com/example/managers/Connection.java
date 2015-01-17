@@ -1,11 +1,11 @@
 package com.example.managers;
 
+import android.app.DownloadManager;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,51 +13,36 @@ import java.net.URL;
 /**
  * Created by Admin on 2014-12-20.
  */
-public class Connection extends AsyncTask {
+public class Connection {
 
     private long startDownloadTime;
     private long finishDownloadTime;
     private int size;
     private String status;
+    private DownloadManager downloadManager;
+    private static Connection instance = new Connection();
 
-    public Connection(String address)
+    public Connection()
     {
-        status = doInBackground(address);
+
+    }
+
+    public static Connection getInstance()
+    {
+        return instance;
+    }
+
+    public void download(String address, Context context)
+    {
+        downloadManager = (DownloadManager)context.getSystemService(Context.DOWNLOAD_SERVICE);
+
     }
 
 
-    @Override
-    protected String doInBackground(Object... objects) {
-
-        try {
-            URL url = new URL((String) objects[0]);
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-            connection.setReadTimeout(10000);
-            connection.setConnectTimeout(15000);
-            connection.setRequestMethod("GET");
-            connection.setDoInput(false);
-
-            InputStream inputStream = connection.getInputStream();
-
-            startDownloadTime = System.nanoTime();
-            connection.connect();
-            finishDownloadTime = System.nanoTime();
-            size = Connection.calculateSize(inputStream);
-
-        }
-        catch (MalformedURLException e)
-        {
-            return "MalformedUrl";
-
-        } catch (IOException e) {
-            return "IOException";
-        }
-
-        return "Completed";
-    }
-
-    public static int calculateSize(InputStream inputStream) throws IOException {
+    public int calculateSize(InputStream inputStream) throws IOException {
         int size = 0;
+
+        Log.e("Read data:"," ");
         while( inputStream.read() >= 0 )
         {
             ++size;

@@ -24,10 +24,22 @@
     <string name="ethernet_connection">Ethernet</string>
     <string name="wimax_connection">WiMax</string>
     <string name="mms_connection">MMS</string>
+    <string name="mobile_connection">Internet mobilny</string>
+
 
     <string name="hint_address">Wpisz adres WWW</string>
     <string name="connect_button">Połącz</string>
     <string name="default_connection_status">Brak aktywnego połączenia</string>
+
+    <string name="connection_type">Typ połączenia:</string>
+    <string name="default_connection_type">Brak połączenia</string>
+
+    <string name="connection_state">Stan połączenia:</string>
+    <string name="default_connection_state">Brak połączenia</string>
+
+    <string name="current_connection">Typ aktualnego połączenia</string>
+    <string name="current_connection_state">Nieznane</string>
+
 
 
 </resources>
