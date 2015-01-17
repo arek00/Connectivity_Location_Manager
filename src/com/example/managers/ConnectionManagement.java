@@ -1,18 +1,14 @@
 package com.example.managers;
 
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.w3c.dom.Text;
 
 /**
  * Created by Admin on 2014-12-20.
@@ -21,7 +17,7 @@ public class ConnectionManagement extends Activity {
 
     private ConnectivityManager connectivityManager;
     private NetworkInfo networkInfo;
-    private NetworkInfo currentNetworkInfo;
+    private NetworkInfo activeNetworkInfo;
     private Connection connection;
 
     private String LOG_TAG = "ConnectivityManager info: ";
@@ -36,8 +32,8 @@ public class ConnectionManagement extends Activity {
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-        currentNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        setActiveNetworkInfo(currentNetworkInfo);
+        activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        setActiveNetworkInfo(activeNetworkInfo);
 
         setConnectivityType(networkInfo);
 
@@ -86,13 +82,13 @@ public class ConnectionManagement extends Activity {
     private void setConnectivityType(NetworkInfo networkInfo) {
         String networkTypeName;
         String networkState;
-        String connected = " Disconnected";
+        boolean connected = false;
 
 
         if (networkInfo != null) {
             networkTypeName = networkInfo.getTypeName();
             networkState = networkInfo.getState().toString();
-            connected = Boolean.toString(networkInfo.isConnected());
+            connected = networkInfo.isConnected();
 
         } else {
             networkTypeName = "Can't be obtain";
