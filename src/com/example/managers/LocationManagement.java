@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
 /**
  * Created by Admin on 2014-12-20.
  */
-public class LocationManagement extends Activity implements LocationListener{
+public class LocationManagement extends Activity implements LocationListener {
 
     LocationManager locationManager;
     Criteria criteria;
@@ -26,31 +26,30 @@ public class LocationManagement extends Activity implements LocationListener{
     TextView latitudeView;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location);
 
-        longitudeView = (TextView)findViewById(R.id.longitude_value);
-        latitudeView = (TextView)findViewById(R.id.latitude_value);
+        longitudeView = (TextView) findViewById(R.id.longitude_value);
+        latitudeView = (TextView) findViewById(R.id.latitude_value);
 
-        this.locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        this.locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        if(!this.locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            Intent backToMyActivity = new Intent(this,MyActivity.class);
+        if (!this.locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Intent backToMyActivity = new Intent(this, MyActivity.class);
             startActivity(backToMyActivity);
             finish();
-            Toast toast = Toast.makeText(this,"Turn on GPS",Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "Turn on GPS", Toast.LENGTH_LONG);
             toast.show();
         }
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
         this.criteria = new Criteria();
         this.criteria.setAccuracy(Criteria.ACCURACY_COARSE);
         this.criteria.setCostAllowed(false);
-        locationProvider = locationManager.getBestProvider(this.criteria,false);
+        locationProvider = locationManager.getBestProvider(this.criteria, false);
         location = locationManager.getLastKnownLocation(locationProvider);
 
 
@@ -62,24 +61,26 @@ public class LocationManagement extends Activity implements LocationListener{
         }
     }
 
-    public void setCoarse(View view)
-    {
+    public void setCoarse(View view) {
         this.criteria.setAccuracy(Criteria.ACCURACY_COARSE);
     }
-    public void setLow(View view)
-    {
-        this.criteria.setAccuracy(Criteria.ACCURACY_LOW);
+
+    public void setLow(View view) {
+        this.criteria.setHorizontalAccuracy(Criteria.ACCURACY_LOW);
+        this.criteria.setVerticalAccuracy(Criteria.ACCURACY_LOW);
     }
-    public void setMedium(View view)
-    {
-        this.criteria.setAccuracy(Criteria.ACCURACY_MEDIUM);
+
+    public void setMedium(View view) {
+        this.criteria.setHorizontalAccuracy(Criteria.ACCURACY_MEDIUM);
+        this.criteria.setVerticalAccuracy(Criteria.ACCURACY_MEDIUM);
     }
-    public void setHigh(View view)
-    {
-        this.criteria.setAccuracy(Criteria.ACCURACY_HIGH);
+
+    public void setHigh(View view) {
+        this.criteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH);
+        this.criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
     }
-    public void setFine(View view)
-    {
+
+    public void setFine(View view) {
         this.criteria.setAccuracy(Criteria.ACCURACY_FINE);
     }
 
